@@ -8,155 +8,98 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--gold:#C89C2E;--gold-light:#E8B94D;--purple:#4B176E}
+:root{--gold:#C89C2E;--gold-light:#E8B94D}
 body{font-family:'Inter',sans-serif}
 .heading-font{font-family:'Playfair Display',serif}
-.slideshow-image{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center 12%;opacity:0;transition:opacity 2s ease-in-out,transform 20s ease-in-out;transform:scale(1)}
+.slideshow-image{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center center;opacity:0;transition:opacity 2s ease-in-out,transform 20s ease-in-out;transform:scale(1)}
 .slideshow-image.active{opacity:1;transform:scale(1.08)}
-.overlay-dark{background:radial-gradient(ellipse at center,rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.65) 100%),linear-gradient(180deg,rgba(0,0,0,0.4) 0%,rgba(0,0,0,0.15) 35%,rgba(0,0,0,0.85) 100%)}
+.overlay-dark{background:linear-gradient(180deg,rgba(0,0,0,0.15) 0%,rgba(0,0,0,0.1) 30%,rgba(0,0,0,0.7) 100%)}
 .btn-primary{background:linear-gradient(135deg,#C89C2E 0%,#E8B94D 50%,#D4A017 100%);color:#2D0F44;font-weight:700;transition:all 0.4s ease}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(200,156,46,0.4)}
-.btn-outline-gold{border:2px solid #C89C2E;color:white;transition:all 0.3s}
-.btn-outline-gold:hover{background:#C89C2E;color:#2D0F44}
-.countdown-digit{background:rgba(200,156,46,0.15);border:1px solid rgba(200,156,46,0.4)}
-.mobile-menu{transform:translateX(100%);transition:transform 0.3s ease}
-.mobile-menu.open{transform:translateX(0)}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-.animate-fadeInUp{animation:fadeInUp 1s ease-out forwards}.delay-200{animation-delay:0.2s;opacity:0}.delay-400{animation-delay:0.4s;opacity:0}
+.animate-fadeInUp{animation:fadeInUp 1s ease-out forwards}.delay-200{animation-delay:0.2s;opacity:0}.delay-400{animation-delay:0.4s;opacity:0}.delay-600{animation-delay:0.6s;opacity:0}
+.mobile-menu{position:fixed;top:88px;right:16px;width:300px;background:rgba(15,15,19,0.85);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:8px;box-shadow:0 20px 60px rgba(0,0,0,0.5);opacity:0;transform:translateY(-10px) scale(0.98);pointer-events:none;transition:all 0.35s ease;z-index:60}
+.mobile-menu.open{opacity:1;transform:translateY(0) scale(1);pointer-events:all}
+.mobile-link{width:100%;display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-radius:12px;color:white;font-size:0.95rem;font-weight:500;transition:all 0.25s;text-align:left}
+.mobile-link:hover{background:rgba(200,156,46,0.12);color:#E8B94D}
+.this-month-badge{background:linear-gradient(135deg,rgba(200,156,46,0.25) 0%,rgba(232,185,77,0.15) 100%);border:1px solid rgba(200,156,46,0.5);box-shadow:0 0 30px rgba(200,156,46,0.3), inset 0 1px 0 rgba(255,255,255,0.1);backdrop-filter:blur(12px)}
 </style>
 </head>
 <body class="bg-gray-900 overflow-x-hidden">
 <div class="fixed inset-0 w-full h-screen z-0">
-<img src="https://i.postimg.cc/wvMDm461/FB-IMG-1783980016590.jpg" alt="AGCI Service" class="slideshow-image active">
-<img src="https://i.postimg.cc/15w7XX7Z/FB-IMG-1783980005394.jpg" alt="AGCI Worship" class="slideshow-image">
-<img src="https://i.postimg.cc/nzX0Jh95/FB-IMG-1783979486139.jpg" alt="AGCI Congregation" class="slideshow-image">
-<img src="https://i.postimg.cc/c18Xk6Sr/FB-IMG-1783980040994.jpg" alt="AGCI Event" class="slideshow-image">
+<img src="https://i.postimg.cc/wvMDm461/FB-IMG-1783980016590.jpg" class="slideshow-image active">
+<img src="https://i.postimg.cc/15w7XX7Z/FB-IMG-1783980005394.jpg" class="slideshow-image">
+<img src="https://i.postimg.cc/nzX0Jh95/FB-IMG-1783979486139.jpg" class="slideshow-image">
+<img src="https://i.postimg.cc/c18Xk6Sr/FB-IMG-1783980040994.jpg" class="slideshow-image">
 <div class="absolute inset-0 overlay-dark z-10"></div>
 </div>
 
-<nav class="fixed top-0 w-full z-50 bg-gradient-to-b from-black/40 to-transparent backdrop-blur-sm" id="navbar">
+<nav class="fixed top-0 w-full z-50 bg-transparent">
 <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-<div class="flex items-center gap-3"><img src="https://i.postimg.cc/59h1DHFV/file-000000000a3071f48c2ca3e54f69a60a.png" alt="AGCI Logo" class="h-12 w-auto"><span class="text-white font-bold heading-font hidden sm:block tracking-wide">AGCI</span></div>
+<div class="flex items-center gap-3"><img src="https://i.postimg.cc/59h1DHFV/file-000000000a3071f48c2ca3e54f69a60a.png" class="h-12 w-auto"><span class="text-white font-bold heading-font hidden sm:block">AGCI</span></div>
 <div class="hidden md:flex gap-8 items-center">
-<a href="#home" class="text-white hover:text-[#E8B94D] font-medium">Home</a>
-<a href="#about" class="text-white hover:text-[#E8B94D] font-medium">About</a>
-<a href="https://oceandrives196-boop.github.io/AGCI-Library-/" target="_blank" rel="noopener noreferrer" class="text-white hover:text-[#E8B94D] font-medium">Library</a>
-<a href="#contact" class="text-white hover:text-[#E8B94D] font-medium">Contact</a>
-<button class="btn-primary px-6 py-2.5 rounded-full text-sm shadow-lg">Join Us Sunday</button>
+<a href="https://agci.org.ng" target="_blank" class="text-white hover:text-[#E8B94D] font-semibold">Home</a>
+<a href="https://info.agci.org.ng/" target="_blank" class="text-white hover:text-[#E8B94D]">About Us</a>
+<a href="https://library.agci.org.ng" target="_blank" class="text-white hover:text-[#E8B94D]">Library</a>
+<a href="#contact" class="text-white hover:text-[#E8B94D]">Contact</a>
+<button id="watch-live-nav" class="btn-primary px-6 py-2.5 rounded-full text-sm"><i class="fab fa-youtube mr-1"></i> Watch Live</button>
 </div>
-<button id="mobile-menu-btn" class="md:hidden text-white"><i class="fas fa-bars text-2xl"></i></button>
+<button id="mobile-menu-btn" class="md:hidden w-11 h-11 rounded-full bg-black/20 backdrop-blur-md border border-white/10 flex items-center justify-center"><i class="fas fa-bars text-white"></i></button>
 </div>
-<div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-screen w-72 bg-[#0f0f13]/75 backdrop-blur-xl z-50 shadow-2xl p-6 border-l border-white/10">
-<div class="flex justify-end"><button id="close-menu-btn" class="text-white"><i class="fas fa-times text-2xl"></i></button></div>
-<div class="flex flex-col space-y-6 mt-10">
-<a href="#home" class="text-white text-lg border-b border-gray-700 pb-3 hover:text-[#E8B94D]">Home</a>
-<a href="#about" class="text-white text-lg border-b border-gray-700 pb-3 hover:text-[#E8B94D]">About</a>
-<a href="https://oceandrives196-boop.github.io/AGCI-Library-/" target="_blank" rel="noopener noreferrer" class="text-white text-lg border-b border-gray-700 pb-3 hover:text-[#E8B94D]">Library</a>
-<a href="#contact" class="text-white text-lg border-b border-gray-700 pb-3 hover:text-[#E8B94D]">Contact</a>
-<button class="btn-primary px-6 py-3 rounded-full mt-4">Join Us Sunday</button>
-</div>
+
+<div id="mobile-menu" class="mobile-menu">
+<a href="https://agci.org.ng" target="_blank" class="mobile-link">Home <i class="fas fa-home text-xs opacity-50"></i></a>
+<a href="https://info.agci.org.ng/" target="_blank" class="mobile-link">About Us <i class="fas fa-info-circle text-xs opacity-50"></i></a>
+<a href="https://library.agci.org.ng" target="_blank" class="mobile-link">Library <i class="fas fa-book-open text-xs opacity-50"></i></a>
+<a href="#contact" class="mobile-link">Contact <i class="fas fa-envelope text-xs opacity-50"></i></a>
+<button id="branches-btn-mobile" class="mobile-link">Our Branches <i class="fas fa-map-location-dot text-xs opacity-50"></i></button>
+<button id="watch-live-mobile" class="mobile-link">Watch Live <i class="fab fa-youtube text-xs opacity-50"></i></button>
+<div class="h-[1px] bg-white/5 my-2"></div>
+<button id="close-menu-btn" class="mobile-link justify-center text-white/40 text-sm"><i class="fas fa-times mr-2"></i> Close</button>
 </div>
 </nav>
 
-<section id="home" class="relative min-h-screen flex items-center justify-center z-20 px-4">
-<div class="text-center max-w-5xl mx-auto pt-28 md:pt-36">
-<div class="mb-6 animate-fadeInUp mt-12 md:mt-20"><span class="text-[#E8B94D] text-sm md:text-base tracking-[0.3em] uppercase font-semibold">Welcome to</span></div>
-<h1 class="heading-font text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight animate-fadeInUp delay-200">Agape God's Centre<span class="block text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-[#E8B94D] to-[#C89C2E]">International</span></h1>
-<p class="text-lg md:text-2xl text-gray-200 mb-10 font-light italic animate-fadeInUp delay-400">"Where Love Leads and God Reigns"</p>
-<div class="flex flex-col sm:flex-row gap-4 justify-center animate-fadeInUp delay-400">
-<button class="btn-primary px-8 py-4 rounded-full text-base"><i class="fas fa-play-circle mr-2"></i> Watch Live Service</button>
-<a href="#contact" class="btn-outline-gold px-8 py-4 rounded-full text-base text-center"><i class="fas fa-map-marker-alt mr-2"></i> Visit our branches</a>
+<div id="menu-overlay" class="fixed inset-0 bg-black/20 z-40 hidden"></div>
+
+<section id="home" class="relative min-h-screen flex items-center justify-center z-20 px-6">
+<div class="text-center max-w-4xl mx-auto pt-16">
+<div class="this-month-badge inline-flex items-center gap-3 px-8 py-3 rounded-full mb-10 animate-fadeInUp">
+<span class="w-2 h-2 bg-[#E8B94D] rounded-full animate-pulse shadow-[0_0_10px_#E8B94D]"></span>
+<span class="text-[#E8B94D] text-sm md:text-[13px] tracking-[0.3em] uppercase font-bold">This Month at AGCI</span>
+</div>
+<h1 class="heading-font font-black text-white leading-[0.9] animate-fadeInUp delay-200">
+<span class="block text-5xl md:text-7xl lg:text-8xl">Godly Home,</span>
+<span class="block text-5xl md:text-7xl lg:text-8xl mt-2 text-transparent bg-clip-text bg-gradient-to-r from-[#E8B94D] to-[#C89C2E]">Glorious Home.</span>
+</h1>
+<p class="heading-font text-white/80 text-lg md:text-xl tracking-wide font-medium mt-10 animate-fadeInUp delay-400">Agape God's Centre International</p>
+<div class="flex flex-col sm:flex-row gap-3 justify-center mt-10 animate-fadeInUp delay-600">
+<button id="watch-live-btn" class="btn-primary px-8 py-4 rounded-full text-sm"><i class="fab fa-youtube mr-2"></i> Watch Live Service</button>
+<button id="branches-btn" class="bg-white/5 backdrop-blur border border-white/10 text-white px-8 py-4 rounded-full text-sm"><i class="fas fa-map-marker-alt mr-2 text-[#E8B94D]"></i> Visit Our Branches</button>
 </div>
 </div>
 </section>
 
-<section id="about" class="relative z-20 bg-white py-20 md:py-28 px-4 sm:px-6 lg:px-8">
-<div class="max-w-6xl mx-auto">
-<div class="text-center mb-16">
-<span class="text-[#C89C2E] text-sm tracking-[0.3em] uppercase font-semibold">Who We Are</span>
-<h2 class="heading-font text-4xl md:text-5xl font-bold text-gray-900 mt-3">Rooted in Love, Growing in Grace</h2>
-<div class="w-24 h-1 bg-[#C89C2E] mx-auto mt-6"></div>
-</div>
-<div class="grid md:grid-cols-3 gap-8">
-<div class="bg-[#fdf9f0] rounded-2xl p-8 border border-[#C89C2E]/20 hover:shadow-xl transition-shadow">
-<div class="w-12 h-12 rounded-full bg-[#4B176E] flex items-center justify-center mb-5"><i class="fas fa-bullseye text-[#E8B94D]"></i></div>
-<h3 class="heading-font text-xl font-bold text-[#A33A3A] mb-3">OUR MISSION</h3>
-<p class="text-gray-700 leading-relaxed italic">"Reaching out and discipling the lost for the kingdom of Christ"</p>
-</div>
-<div class="bg-[#f0fdf4] rounded-2xl p-8 border border-green-200 hover:shadow-xl transition-shadow">
-<div class="w-12 h-12 rounded-full bg-[#166534] flex items-center justify-center mb-5"><i class="fas fa-eye text-white"></i></div>
-<h3 class="heading-font text-xl font-bold text-[#166534] mb-3">OUR VISION</h3>
-<p class="text-gray-700 leading-relaxed italic">"To prepare and equip the saints for the works of the ministry and thereby edify the Body of Christ"</p>
-</div>
-<div class="bg-[#fdf2f2] rounded-2xl p-8 border border-[#C89C2E]/20 hover:shadow-xl transition-shadow">
-<div class="w-12 h-12 rounded-full bg-[#C89C2E] flex items-center justify-center mb-5"><i class="fas fa-heart text-white"></i></div>
-<h3 class="heading-font text-xl font-bold text-[#A33A3A] mb-3">OUR PHILOSOPHY</h3>
-<p class="text-gray-700 leading-relaxed italic">"In essentials, Non-compromise; in Non-essentials, Liberty and in All Things, LOVE"</p>
-</div>
-</div>
-</div>
-</section>
+<section id="contact" class="relative z-20 bg-[#0f0f13] py-20 px-6"><div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12"><div><span class="text-[#E8B94D] text-sm tracking-[0.3em] uppercase">Get In Touch</span><h2 class="heading-font text-4xl font-bold text-white mt-3">Contact Us</h2><div class="mt-8 space-y-4"><p class="text-gray-400"><i class="fas fa-map-marker-alt text-[#C89C2E] mr-2"></i> Plot 14, Community Road, Owode-Elede, Via Mile 12, Lagos</p><p class="text-gray-400"><i class="fas fa-envelope text-[#C89C2E] mr-2"></i> info@agapegodcentre.org</p></div></div><div><form id="contact-form" class="space-y-4"><input required placeholder="Your Name" class="w-full px-6 py-4 rounded-lg bg-white/10 border border-white/20 text-white"><input required placeholder="Your Email" class="w-full px-6 py-4 rounded-lg bg-white/10 border border-white/20 text-white"><textarea required placeholder="Your Message" rows="5" class="w-full px-6 py-4 rounded-lg bg-white/10 border border-white/20 text-white"></textarea><button type="submit" class="btn-primary w-full py-4 rounded-lg">Send Message</button></form></div></div></section>
 
-<section id="contact" class="relative z-20 bg-[#0f0f13] py-20 md:py-28 px-4 sm:px-6 lg:px-8">
-<div class="max-w-6xl mx-auto">
-<div class="grid lg:grid-cols-2 gap-12">
-<div>
-<span class="text-[#E8B94D] text-sm tracking-[0.3em] uppercase font-semibold">Get In Touch</span>
-<h2 class="heading-font text-4xl md:text-5xl font-bold text-white mt-3">Contact Us</h2>
-<p class="text-gray-400 mt-6">We would love to hear from you. Visit us or reach out.</p>
-<div class="mt-10 space-y-6">
-<div class="flex items-start space-x-4"><div class="w-12 h-12 rounded-full bg-[#C89C2E]/15 flex items-center justify-center flex-shrink-0 border border-[#C89C2E]/30"><i class="fas fa-map-marker-alt text-[#C89C2E]"></i></div><div><h4 class="text-white font-semibold mb-1">Headquarters Address</h4><p class="text-gray-400">Plot 14, Community Road, Off Duru Avenue<br>Owode-Elede, Via Mile 12, Lagos</p></div></div>
-<div class="flex items-start space-x-4"><div class="w-12 h-12 rounded-full bg-[#C89C2E]/15 flex items-center justify-center flex-shrink-0 border border-[#C89C2E]/30"><i class="fas fa-envelope text-[#C89C2E]"></i></div><div><h4 class="text-white font-semibold mb-1">Email</h4><p class="text-gray-400">info@agapegodcentre.org<br>contact@agapegodcentre.org</p></div></div>
-</div>
-</div>
-<div>
-<form class="space-y-6" onsubmit="event.preventDefault(); alert('Message sent!'); this.reset();">
-<div class="grid sm:grid-cols-2 gap-6"><input type="text" required placeholder="Your Name" class="w-full px-6 py-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-[#C89C2E]"><input type="email" required placeholder="Your Email" class="w-full px-6 py-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-[#C89C2E]"></div>
-<input type="text" required placeholder="Subject" class="w-full px-6 py-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-[#C89C2E]">
-<textarea rows="5" required placeholder="Your Message" class="w-full px-6 py-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-[#C89C2E] resize-none"></textarea>
-<button type="submit" class="btn-primary px-8 py-4 rounded-lg font-semibold text-base w-full shadow-xl">Send Message <i class="fas fa-paper-plane ml-2"></i></button>
-</form>
-<div class="mt-16 pt-10 border-t border-white/10 text-center">
-<div class="inline-flex flex-col items-center gap-4 bg-gradient-to-br from-[#1a0b2e]/80 to-[#2D0F44]/80 backdrop-blur-xl rounded-2xl p-8 border border-[#C89C2E]/20 shadow-2xl">
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#C89C2E] to-[#E8B94D] flex items-center justify-center shadow-lg shadow-[#C89C2E]/30 animate-pulse"><i class="fas fa-robot text-[#2D0F44]"></i></div>
-<span class="text-[#E8B94D] text-xs tracking-[0.25em] uppercase font-semibold">AI Assistant</span>
-</div>
-<p class="text-gray-300 text-sm max-w-xs">Have questions about AGCI? Let Modupe guide you.</p>
-<button id="modupe-ai-btn" class="group relative px-8 py-4 rounded-full font-semibold text-white bg-gradient-to-r from-[#4B176E] via-[#7C3AED] to-[#C89C2E] shadow-[0_0_30px_rgba(200,156,46,0.4)] hover:shadow-[0_0_50px_rgba(200,156,46,0.6)] transition-all duration-500 hover:scale-[1.03] overflow-hidden">
-<span class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>
-<span class="relative flex items-center gap-3"><i class="fas fa-sparkles animate-spin" style="animation-duration:3s"></i> Chat with Modupe AI <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i></span>
-</button>
-<p class="text-[10px] text-gray-500 tracking-widest uppercase">Powered by AGCI Intelligence</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<footer class="relative z-20 bg-black py-8 px-4 border-t border-gray-800"><div class="max-w-6xl mx-auto text-center"><div class="flex items-center justify-center gap-3 mb-4"><img src="https://i.postimg.cc/59h1DHFV/file-000000000a3071f48c2ca3e54f69a60a.png" class="h-8"><span class="text-white font-bold heading-font">AGCI</span></div><p class="text-gray-400 text-sm">&copy; 2026 Agape God's Centre International. All Rights Reserved.</p></div></footer>
-
-<div id="modupe-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/70 backdrop-blur-sm p-4">
-<div class="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl relative">
-<button id="close-modupe" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center"><i class="fas fa-times text-gray-600"></i></button>
-<div class="text-center">
-<div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-[#4B176E] to-[#C89C2E] flex items-center justify-center mb-4"><i class="fas fa-robot text-white text-2xl"></i></div>
-<h3 class="heading-font text-2xl font-bold text-gray-900">Modupe AI</h3>
-<p class="text-gray-500 text-sm mt-2">Your AGCI spiritual guide. Ask anything about our mission, vision, services, and faith.</p>
-</div>
-</div>
-</div>
+<div id="branches-modal" class="fixed inset-0 z-[110] hidden items-center justify-center bg-black/80 p-4"><div class="bg-white rounded-3xl max-w-5xl w-full p-8 relative"><button id="close-branches" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center"><i class="fas fa-times"></i></button><h3 class="heading-font text-3xl font-bold text-center">Our Branches</h3><div class="grid md:grid-cols-3 gap-6 mt-8"><div class="border rounded-2xl p-6"><h4 class="font-bold">Mile 12 - HQ</h4><p class="text-sm mt-2">Plot 14, Community Road, Via Mile 12, Lagos</p></div><div class="border rounded-2xl p-6"><h4 class="font-bold">Lukosi Branch</h4><p class="text-sm mt-2">Lukosi, Owode-Elede, Ikorodu</p></div><div class="border rounded-2xl p-6"><h4 class="font-bold">Lukosi Extension</h4><p class="text-sm mt-2">Lukosi Extension, Owode-Elede</p></div></div></div></div>
 
 <script>
-const slides=document.querySelectorAll('.slideshow-image');let current=0;function nextSlide(){slides[current].classList.remove('active');current=(current+1)%slides.length;slides[current].classList.add('active');}setInterval(nextSlide,5000);
-const mobileBtn=document.getElementById('mobile-menu-btn');const closeBtn=document.getElementById('close-menu-btn');const mobileMenu=document.getElementById('mobile-menu');mobileBtn.addEventListener('click',()=>mobileMenu.classList.add('open'));closeBtn.addEventListener('click',()=>mobileMenu.classList.remove('open'));
-// Close mobile menu when clicking a link
-document.querySelectorAll('#mobile-menu a').forEach(link=>{
-  link.addEventListener('click',()=>mobileMenu.classList.remove('open'));
-});
-document.getElementById('modupe-ai-btn')?.addEventListener('click',()=>{document.getElementById('modupe-modal').classList.remove('hidden');document.getElementById('modupe-modal').classList.add('flex');});
-document.getElementById('close-modupe')?.addEventListener('click',()=>{document.getElementById('modupe-modal').classList.add('hidden');document.getElementById('modupe-modal').classList.remove('flex');});
+const slides=document.querySelectorAll('.slideshow-image');let c=0;setInterval(()=>{slides[c].classList.remove('active');c=(c+1)%slides.length;slides[c].classList.add('active');},4000);
+const mobileBtn=document.getElementById('mobile-menu-btn'),closeBtn=document.getElementById('close-menu-btn'),mobileMenu=document.getElementById('mobile-menu'),overlay=document.getElementById('menu-overlay');
+const openMenu=()=>{mobileMenu.classList.add('open');overlay.classList.remove('hidden');mobileBtn.innerHTML='<i class="fas fa-times text-white"></i>';}
+const closeMenu=()=>{mobileMenu.classList.remove('open');overlay.classList.add('hidden');mobileBtn.innerHTML='<i class="fas fa-bars text-white"></i>';}
+mobileBtn?.addEventListener('click',()=>{mobileMenu.classList.contains('open')?closeMenu():openMenu();});
+closeBtn?.addEventListener('click',closeMenu);overlay?.addEventListener('click',closeMenu);
+const branchesModal=document.getElementById('branches-modal');
+const openBranches=()=>{branchesModal.classList.remove('hidden');branchesModal.classList.add('flex');}
+const closeBranches=()=>{branchesModal.classList.add('hidden');branchesModal.classList.remove('flex');}
+document.getElementById('branches-btn')?.addEventListener('click',openBranches);
+document.getElementById('branches-btn-mobile')?.addEventListener('click',()=>{closeMenu();setTimeout(openBranches,200);});
+document.getElementById('close-branches')?.addEventListener('click',closeBranches);
+function openYouTubeApp(){window.open("https://youtube.com/@agapegodscentreinternational?si=6VaNy4lRzqSo1d5J","_blank");}
+document.getElementById('watch-live-btn')?.addEventListener('click',openYouTubeApp);
+document.getElementById('watch-live-nav')?.addEventListener('click',openYouTubeApp);
+document.getElementById('watch-live-mobile')?.addEventListener('click',()=>{closeMenu();openYouTubeApp();});
 </script>
 </body>
 </html>
