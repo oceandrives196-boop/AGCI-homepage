@@ -13,12 +13,13 @@ body{font-family:'Inter',sans-serif;background:#0a0a0c}.heading-font{font-family
 .overlay-dark{background:linear-gradient(180deg,rgba(0,0,0,0.15) 0%,rgba(0,0,0,0.1) 30%,rgba(0,0,0,0.75) 100%)}
 .btn-primary{background:linear-gradient(135deg,#C89C2E 0%,#E8B94D 50%,#D4A017 100%);color:#2D0F44;font-weight:700;transition:all 0.4s}
 .this-month-badge{background:linear-gradient(135deg,rgba(200,156,46,0.25) 0%,rgba(232,185,77,0.15) 100%);border:1px solid rgba(200,156,46,0.5);box-shadow:0 0 30px rgba(200,156,46,0.3);backdrop-filter:blur(12px)}
-.mobile-menu{position:fixed;top:88px;right:16px;width:310px;background:rgba(18,12,15,0.92);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.07);border-radius:28px;padding:16px 12px 12px 12px;box-shadow:0 25px 80px rgba(0,0,0,0.6);opacity:0;transform:translateY(-12px) scale(0.96);pointer-events:none;transition:all 0.35s;z-index:60}
+.mobile-menu{position:fixed;top:88px;right:16px;width:310px;background:rgba(18,12,15,0.92);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.07);border-radius:28px;padding:16px 12px 12px 12px;box-shadow:0 25px 80px rgba(0,0,0,0.6);opacity:0;transform:translateY(-12px) scale(0.96);pointer-events:none;transition:all 0.35s;z-index:60;display:flex;flex-direction:column;min-height:380px}
 .mobile-menu.open{opacity:1;transform:translateY(0) scale(1);pointer-events:all}
-.mobile-link{width:100%;display:flex;justify-content:space-between;padding:16px 18px;border-radius:14px;color:rgba(255,255,255,0.9);font-size:1.05rem;font-weight:500;transition:0.25s;text-align:left}
-.mobile-link:hover{background:rgba(255,255,255,0.06)}
-.mobile-link i{opacity:0.5;font-size:0.95rem}
-.agci-ai-btn{margin-top:8px;background:linear-gradient(135deg,rgba(75,55,25,0.9) 0%,rgba(50,35,70,0.9) 100%);border:1px solid rgba(200,156,46,0.25);border-radius:16px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
+.mobile-link{width:100%;display:flex;justify-content:space-between;align-items:center;padding:18px 18px;border-radius:14px;color:rgba(255,255,255,0.9);font-size:1.1rem;font-weight:500;transition:0.25s;text-align:left}
+.mobile-link:hover{background:rgba(255,255,255,0.06);color:#fff}
+.mobile-link i{opacity:0.45;font-size:1rem}
+.menu-footer{margin-top:auto;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.agci-ai-btn{width:100%;background:linear-gradient(135deg,rgba(75,55,25,0.9) 0%,rgba(50,35,70,0.9) 100%);border:1px solid rgba(200,156,46,0.25);border-radius:16px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
 .contact-input{background:#1e1e1e;border:1px solid #3a3a3a;color:white;transition:all 0.3s}
 .contact-input:focus{border-color:#C89C2E;outline:none;background:#252525}
 </style>
@@ -39,26 +40,32 @@ body{font-family:'Inter',sans-serif;background:#0a0a0c}.heading-font{font-family
 <a href="https://agci.org.ng" class="text-white hover:text-[#E8B94D] text-sm">Home</a>
 <a href="https://info.agci.org.ng/" target="_blank" class="text-white hover:text-[#E8B94D] text-sm">About Us</a>
 <a href="https://library.agci.org.ng" target="_blank" class="text-white hover:text-[#E8B94D] text-sm">Library</a>
-<a href="#contact" class="text-white hover:text-[#E8B94D] text-sm">Contact</a>
-<button id="branches-btn-desktop" class="text-white hover:text-[#E8B94D] text-sm">Our Branches</button>
+<a href="https://give.agci.org.ng/" target="_blank" class="text-white hover:text-[#E8B94D] text-sm">Give</a>
 <a href="https://ai.agci.org.ng/" target="_blank" class="px-4 py-2 rounded-full bg-gradient-to-r from-[#4B176E] to-[#C89C2E] text-white text-xs font-bold">AGCI AI</a>
 <button id="watch-live-nav" class="btn-primary px-5 py-2.5 rounded-full text-xs"><i class="fab fa-youtube mr-1"></i> Watch Live</button>
 </div>
 <button id="mobile-menu-btn" class="md:hidden w-11 h-11 rounded-full bg-black/20 backdrop-blur border border-white/10 flex items-center justify-center"><i class="fas fa-bars text-white"></i></button>
 </div>
+
+<!-- CLEAN MENU - NO YELLOW GIVE, ONLY 4 ITEMS -->
 <div id="mobile-menu" class="mobile-menu">
+<div class="w-full">
 <a href="https://agci.org.ng" class="mobile-link">Home <i class="fas fa-house"></i></a>
 <a href="https://info.agci.org.ng/" target="_blank" class="mobile-link">About Us <i class="fas fa-circle-info"></i></a>
 <a href="https://library.agci.org.ng" target="_blank" class="mobile-link">Library <i class="fas fa-book-open"></i></a>
-<a href="#contact" class="mobile-link">Contact <i class="fas fa-envelope"></i></a>
-<button id="branches-btn-mobile" class="mobile-link">Our Branches <i class="fas fa-map-location-dot"></i></button>
-<button id="watch-live-mobile" class="mobile-link">Watch Live <i class="fab fa-youtube"></i></button>
-<div class="h-[1px] bg-white/5 my-3"></div>
+<a href="https://give.agci.org.ng/" target="_blank" class="mobile-link">Give <i class="fas fa-hand-holding-heart"></i></a>
+</div>
+
+<!-- FOOTER CENTERED -->
+<div class="menu-footer">
+<div class="w-full h-[1px] bg-white/5 my-3"></div>
 <a href="https://ai.agci.org.ng/" target="_blank" class="agci-ai-btn"><div class="flex items-center gap-3"><i class="fas fa-brain text-[#E8B94D] text-lg"></i><span class="text-[#E8B94D] font-bold">AGCI AI</span></div><span class="px-3 py-1 rounded-full bg-[#E8B94D] text-black text-[11px] font-bold">NEW</span></a>
 <p class="text-center text-[10px] tracking-[0.2em] text-white/25 mt-3">POWERED BY AGCI INTELLIGENCE</p>
-<button id="close-menu-btn" class="w-full flex items-center justify-center gap-2 py-4 mt-2 text-white/40 text-sm"><i class="fas fa-xmark"></i> Close</button>
+<button id="close-menu-btn" class="flex items-center justify-center gap-2 py-4 mt-2 text-white/40 text-sm"><i class="fas fa-xmark"></i> Close</button>
+</div>
 </div>
 </nav>
+
 <div id="menu-overlay" class="fixed inset-0 bg-black/30 z-40 hidden"></div>
 
 <section id="home" class="relative min-h-screen flex items-center justify-center z-20 px-6">
@@ -83,7 +90,6 @@ body{font-family:'Inter',sans-serif;background:#0a0a0c}.heading-font{font-family
 </div>
 </section>
 
-<!-- CONTACT SECTION LIKE YOUR SCREENSHOT -->
 <section id="contact" class="relative z-20 bg-[#121212] px-6 py-20">
 <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-start">
 <div>
@@ -104,7 +110,7 @@ body{font-family:'Inter',sans-serif;background:#0a0a0c}.heading-font{font-family
 <input type="text" placeholder="Your Name" class="contact-input w-full px-6 py-5 rounded-xl text-[16px]">
 <input type="email" placeholder="Your Email" class="contact-input w-full px-6 py-5 rounded-xl text-[16px]">
 <textarea placeholder="Your Message" rows="6" class="contact-input w-full px-6 py-5 rounded-xl text-[16px] resize-none"></textarea>
-<button class="w-full py-5 rounded-xl bg-gradient-to-r from-[#C89C2E] to-[#E8B94D] text-[#121212] font-bold text-[16px] tracking-wide hover:shadow-[0_10px_30px_rgba(200,156,46,0.3)] transition">Send Message</button>
+<button class="w-full py-5 rounded-xl bg-gradient-to-r from-[#C89C2E] to-[#E8B94D] text-[#121212] font-bold text-[16px]">Send Message</button>
 </div>
 </div>
 </section>
@@ -137,15 +143,12 @@ const mobileBtn=document.getElementById('mobile-menu-btn'),closeBtn=document.get
 const openMenu=()=>{mobileMenu.classList.add('open');overlay.classList.remove('hidden');mobileBtn.innerHTML='<i class="fas fa-times text-white"></i>';}
 const closeMenu=()=>{mobileMenu.classList.remove('open');overlay.classList.add('hidden');mobileBtn.innerHTML='<i class="fas fa-bars text-white"></i>';}
 mobileBtn?.addEventListener('click',()=>{mobileMenu.classList.contains('open')?closeMenu():openMenu();});closeBtn?.addEventListener('click',closeMenu);overlay?.addEventListener('click',closeMenu);
-document.querySelectorAll('#mobile-menu a').forEach(a=>{if(a.id!=='close-menu-btn') a.addEventListener('click',()=>{setTimeout(closeMenu,150);});});
+document.querySelectorAll('#mobile-menu a').forEach(a=>{a.addEventListener('click',()=>{setTimeout(closeMenu,150);});});
 const branchesModal=document.getElementById('branches-modal');
 document.getElementById('branches-btn')?.addEventListener('click',()=>{branchesModal.classList.remove('hidden');branchesModal.classList.add('flex');});
-document.getElementById('branches-btn-desktop')?.addEventListener('click',()=>{branchesModal.classList.remove('hidden');branchesModal.classList.add('flex');});
-document.getElementById('branches-btn-mobile')?.addEventListener('click',()=>{closeMenu();setTimeout(()=>{branchesModal.classList.remove('hidden');branchesModal.classList.add('flex');},250);});
 document.getElementById('close-branches')?.addEventListener('click',()=>{branchesModal.classList.add('hidden');});
 function openYT(){window.open("https://youtube.com/@agapegodscentreinternational?si=6VaNy4lRzqSo1d5J","_blank");}
-document.getElementById('watch-live-btn')?.addEventListener('click',openYT);document.getElementById('watch-live-nav')?.addEventListener('click',openYT);document.getElementById('watch-live-mobile')?.addEventListener('click',()=>{closeMenu();openYT();});
-// Smooth scroll to contact
+document.getElementById('watch-live-btn')?.addEventListener('click',openYT);document.getElementById('watch-live-nav')?.addEventListener('click',openYT);
 document.querySelectorAll('a[href="#contact"]').forEach(link=>{
 link.addEventListener('click',(e)=>{e.preventDefault();closeMenu();document.getElementById('contact').scrollIntoView({behavior:'smooth'});});
 });
